@@ -2,7 +2,7 @@ from fastapi import HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 
-from models import TemperatureModel
+from temperature.models import TemperatureModel
 
 
 async def get_all_temperatures(db: AsyncSession):

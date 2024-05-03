@@ -3,8 +3,9 @@ from sqlalchemy.orm import Session
 
 from city import crud
 from city.crud import update_city_by_id, delete_city_by_id, get_all_cities
+from city.models import CityModel
 from city.schemas import CitySchema
-from models import CityModel
+
 from dependencies import get_db
 
 router = APIRouter()
@@ -27,7 +28,7 @@ def get_cities_endpoint(db: Session = Depends(get_db)):
     return get_all_cities(db=db)
 
 
-@router.get("/cities/{city_id}", response_model=CityModel)
+@router.get("/cities/{city_id}/", response_model=CityModel)
 def get_city_by_id(city_id: int, db: Session = Depends(get_db)):
     city_db = get_city_by_id(city_id=city_id, db=db)
 
@@ -37,11 +38,11 @@ def get_city_by_id(city_id: int, db: Session = Depends(get_db)):
     return city_db
 
 
-@router.put("/cities/{city_id}", response_model=CityModel)
+@router.put("/cities/{city_id}/", response_model=CityModel)
 def update_city_endpoint(city_id: int, city: CitySchema, db: Session = Depends(get_db)):
     return update_city_by_id(city_id=city_id, city=city, db=db)
 
 
-@router.delete("/cities/{city_id}", response_model=CityModel)
+@router.delete("/cities/{city_id}/", response_model=CityModel)
 def delete_city_by_id_endpoint(city_id: int, db: Session = Depends(get_db)):
     return delete_city_by_id(db=db, city_id=city_id)

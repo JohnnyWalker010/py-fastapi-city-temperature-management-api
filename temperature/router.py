@@ -3,7 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 
 import dependencies
-from models import TemperatureModel
+from temperature.models import TemperatureModel
 
 router = APIRouter(prefix="/temperatures", tags=["Temperatures"])
 

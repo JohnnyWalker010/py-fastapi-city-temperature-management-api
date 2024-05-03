@@ -2,14 +2,13 @@ from fastapi import Depends
 from sqlalchemy.orm import Session
 
 import dependencies
+from city.models import CityModel
 from city.schemas import CitySchema
-from models import CityModel
 
 
 def create_city(
-        city: CitySchema,
-        db: Session = Depends(dependencies.get_db),
-
+    city: CitySchema,
+    db: Session = Depends(dependencies.get_db),
 ):
     db_city = CityModel(
         name=city.name,
